@@ -15,9 +15,10 @@ const q_load = 100 * 3.41;
 //external load
 const out_temp = 90; //degrees
 const inside_temp = 55; //degrees
-const u = 0.3;
+const u = 0.8;
+const a_wall = 300; //sqft
 
-const q_conductance = u * zone * (out_temp - inside_temp);
+const q_conductance = u * a_wall * (out_temp - inside_temp);
 
 //total sensible load
 const q_total = quantity * (q_people + q_lighting + q_load) + q_conductance;
