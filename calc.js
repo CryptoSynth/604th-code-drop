@@ -1,8 +1,8 @@
 //internal load
 //area of each zone
 const zone = {
-  length: 61,
-  width: 21,
+  length: 60,
+  width: 30,
   height: 10,
   area: (a, b) => {
     return a * b;
@@ -21,8 +21,8 @@ const plugLoad = zone.area(zone.length, zone.width); //watts/sqft
 const q_load = plugLoad * 3.41;
 
 //external load
-const out_temp = 90; //degrees
-const inside_temp = 55; //degrees
+const out_temp = 80; //degrees
+const inside_temp = 76; //degrees
 const u = 0.8;
 const a_wall =
   zone.area(zone.height, zone.length) + zone.area(zone.height, zone.width); //sqft

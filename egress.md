@@ -106,7 +106,7 @@
       - 7.9.1.2:
         - exit access shall include only designated stairs, corridors, ramps and passgeways leading to an exit
 
-    - ## Making of Means of Egress
+    - ## Marking of Means of Egress
       - 7.10.1.2.1:
         - clearly identifiable as exits shall be marked by an approved sign that is readily visible fro man ydirectio nof exit access
       - 7.10.1.5.2: 
@@ -129,6 +129,6 @@
 
 
 # Building 752 Egress Components 
-- 2 outer bay doors
-- middle bay door
-- Double door
+  - 2 outer bay doors (manual)
+  - middle bay door (manual)
+  - Double door (locking mechanism/manual)
