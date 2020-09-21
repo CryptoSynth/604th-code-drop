@@ -19,7 +19,7 @@
           - 7.2.1.7.1: 
             - cross bar or pushpad required not less than 1 1/2 of the width of the door 
             - mounted !< 34in and !> 48in above the floor 
-            - contructed where the horizontal fore is not to exceend 15 ibf to actuates the cross bar or pad 
+            - contructed where the horizontal force is not to exceend 15 ibf to actuates the cross bar or pad 
           - 7.2.1.8.1:
             - shall be self-closing when opened
           - 7.2.2.5.5.4:
@@ -125,8 +125,6 @@
         - Sign Legend
       - 7.10.8.3.1:
         - No Exit 
-
-
 
 # Building 752 Egress Components 
   - 2 outer bay doors (manual)
