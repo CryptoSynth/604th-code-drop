@@ -34,7 +34,7 @@ class InternalLoad {
   }
 
   //calculate people Q
-  peopleCalc(area) {
+  peopleCalc() {
     return this.people * this.BTU_TO_WATT * this.quantity; //BTU/hr
   }
 
@@ -60,52 +60,120 @@ class ExternalLoad {
 //===================================
 //Building 766 parameters
 //===================================
-const length = 125; //ft
-const width = 25; //ft
-const height = 11; //ft
 
-const quantity = 2; //per item
-const lighting = 1; // 1watt / sqft
-const people = 67.41; // 1 Watt / sqft
-const plug = 1; // 1watt / sqft
+const area_zones = [
+  {
+    length: 10,
+    width: 10,
+    height: 10,
+    internal: {
+      quantity: 2,
+      lighting: 1,
+      people: 67.41,
+      plug: 1
+    },
+    external: {
+      u_factor: 0.3,
+      outTemp: 90,
+      inTemp: 70
+    }
+  },
+  {
+    length: 10,
+    width: 10,
+    height: 10,
+    internal: {
+      quantity: 2,
+      lighting: 1,
+      people: 67.41,
+      plug: 1
+    },
+    external: {
+      u_factor: 0.3,
+      outTemp: 90,
+      inTemp: 70
+    }
+  },
+  {
+    length: 10,
+    width: 10,
+    height: 10,
+    internal: {
+      quantity: 2,
+      lighting: 1,
+      people: 67.41,
+      plug: 1
+    },
+    external: {
+      u_factor: 0.3,
+      outTemp: 90,
+      inTemp: 70
+    }
+  },
+  {
+    length: 10,
+    width: 10,
+    height: 10,
+    internal: {
+      quantity: 2,
+      lighting: 1,
+      people: 67.41,
+      plug: 1
+    },
+    external: {
+      u_factor: 0.3,
+      outTemp: 90,
+      inTemp: 70
+    }
+  }
+];
 
-const u_factor = 0.3;
-const outTemp = 90; // F degrees
-const inTemp = 70; //F degrees
+area_zones.forEach((area, index) => {
+  //===================================
+  //Init Building, Internal, & External
+  //==================================
+  //building_766 instance
 
-//===================================
-//Init Building, Internal, & External
-//===================================
-//building_766 instance
-const building_766 = new Zone(length, width, height);
-const area = building_766.areaCalc(); //calc area
-const areaWall = building_766.areaWallCalc(); //calc wall area
+  const building_766 = new Zone(area.length, area.width, area.height);
 
-//internal load instance
-const internal_load = new InternalLoad(lighting, people, plug, quantity);
-const q_lighting = internal_load.lightingCalc(area);
-const q_people = internal_load.peopleCalc(area);
-const q_plug = internal_load.plugCalc(area);
+  const base_area = building_766.areaCalc(); //calc area
+  const wall_area = building_766.areaWallCalc(); //calc wall area
 
-//external load instance
-const external_load = new ExternalLoad(u_factor, outTemp, inTemp);
-const q_conductance = external_load.conductanceQ(areaWall);
+  //internal load instance
+  const internal_load = new InternalLoad(
+    area.internal.lighting,
+    area.internal.people,
+    area.internal.plug,
+    area.internal.quantity
+  );
+  const q_lighting = internal_load.lightingCalc(base_area);
+  const q_people = internal_load.peopleCalc();
+  const q_plug = internal_load.plugCalc(base_area);
 
-//calculate q total
-const q_total = q_lighting + q_people + q_plug + q_conductance;
+  //external load instance
+  const external_load = new ExternalLoad(
+    area.external.u_factor,
+    area.external.outTemp,
+    area.external.inTemp
+  );
+  const q_conductance = external_load.conductanceQ(wall_area);
 
-//===================================
-//Print Results
-//===================================
-console.log(`
+  //calculate q total
+  const q_total = q_lighting + q_people + q_plug + q_conductance;
+
+  //===================================
+  //Print Results
+  //===================================
+  console.log(`
 =========================
-Building 766 HVAC Report
+Area Zone ${index + 1} HVAC Report
 =========================
-  Floor Area: ${area}
-  Wall Area: ${areaWall}
+  Floor Area: ${base_area}
+  Wall Area: ${wall_area}
   Q Lighting: ${q_lighting}
   Q People: ${q_people}
   Q Plug: ${q_plug}
   Q Conductance: ${q_conductance}
   Q Total: ${q_total}
 `);
+});
